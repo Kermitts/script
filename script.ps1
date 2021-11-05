@@ -216,7 +216,7 @@ function mostrarMenu
      Write-Host "1) Crear usuario" 
      Write-Host "2) Segunda Opción" 
      Write-Host "3) Crear Unidad Organizativa"
-     Write-Host "4) Deshabilitar cuenta de usuario" 
+     Write-Host "4) Cambiar contraseña de usuario" 
      Write-Host "S) Presiona 'S' para salir" 
 }
 #Bucle principal del Script. El bucle se ejecuta de manera infinita hasta que se cumple
@@ -243,13 +243,13 @@ do
                 'Crear Unidad Organizativa' 
                 pause
            } '4' { 
-                Disable-ADAccount -Identity "CN=Sebastian, OU=Administracion Parcial 1, DC=edu-gva, DC=es"
-                'Deshabilitar cuenta de usuario' 
+               wmic Xuser set PasswordExpires=True
                 pause
            } 's' {
                 'Saliendo del script...'
                 return 
            } 
+	   #Xuser=usuario al que se le quiere cambiar la contraseña 
            #Si no se selecciona una de las opciones del menú, es decir, se pulsa algun carácter
            #que no sea 1, 2, 3 o s, sacamos por pantalla un aviso e indicamos lo que hay que realizar.
            default { 
